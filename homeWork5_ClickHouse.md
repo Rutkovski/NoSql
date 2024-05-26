@@ -1,4 +1,5 @@
 
+### Условия ДЗ ###
 Необходимо, используя туториал https://clickhouse.tech/docs/ru/getting-started/tutorial/ :
 - развернуть инстанс;
 - выполнить импорт тестовой БД;
@@ -9,23 +10,24 @@
  ** развернуть Кликхаус в кластерном исполнении, создать распределенную таблицу, заполнить данными и протестировать скорость
 
 
-**Задание 1**
+### **Задание 1** ###
 
 
 _compose_
+
+```
 version: '3.9'
 services:
   clickhouse:
     image: clickhouse/clickhouse-server
     container_name: clickhouse
-    # hostname: clickhouse
     volumes:
         - ${PWD}/ch_data:/var/lib/clickhouse/
         - ${PWD}/ch_logs:/var/log/clickhouse-server/
     ports:
         - '8123:8123'
         - '9000:9000'
-
+```
 
 _docker pull clickhouse/clickhouse-server
 docker compose -f  "docker-compose.yml" up -d --build_
@@ -80,18 +82,16 @@ WHERE (CounterID = 912887) AND (toYYYYMM(StartDate) = 201403)_
 1 row in set. Elapsed: 0.049 sec. Processed 46.57 thousand rows, 1.25 MB (960.05 thousand rows/s., 25.71 MB/s.)
 Peak memory usage: 122.82 KiB.
 
-
-**Задание с одной звездочкой**
+### **Задание с одной звездочкой** ###
 https://clickhouse.com/docs/en/getting-started/example-datasets/uk-price-paid
 Залито как в описании по ссылке (создание и импорт - длинные запросы, не дублирую здесь)
 Сложность - качалось и заливалось час, на очень быстром интернете
 Поделал запросы в духе _select * from uk_price_paid_ Оценил время выполнения
 
+### **Задание с двумя звездочками** ###
 
-**Задание с двумя звездочками**
-
-_compose_
- version: '3.9'
+```
+version: '3.9'
 services:
   clickhouse:
     image: clickhouse/clickhouse-server
@@ -113,8 +113,11 @@ services:
     container_name: clickhouse3
     volumes:
         - ${PWD}/cluster_conf/config.xml:/etc/clickhouse-server/config.xml
+```
 
 _Файл config.xml_
+
+```
 <remote_servers>
         <!-- Test only shard config for testing distributed storage -->
         <perftest_3shards_1replicas>
@@ -138,6 +141,7 @@ _Файл config.xml_
             </shard>
         </perftest_3shards_1replicas>
     </remote_servers>
+```
 
 Развернул с 3 шардами и 1 репликацией для каждой как описано в документации.
 _https://clickhouse.com/docs/ru/getting-started/tutorial
