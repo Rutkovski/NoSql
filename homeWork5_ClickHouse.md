@@ -88,6 +88,9 @@ https://clickhouse.com/docs/en/getting-started/example-datasets/uk-price-paid
 Сложность - качалось и заливалось час, на очень быстром интернете
 Поделал запросы в духе _select * from uk_price_paid_ Оценил время выполнения
 
+38770503 rows in set. Elapsed: 2.063 sec. Processed 38.77 million rows, 1.71 GB (18.79 million rows/s., 829.87 MB/s.)
+Peak memory usage: 47.38 MiB.
+
 ### **Задание с двумя звездочками** ###
 
 ```
