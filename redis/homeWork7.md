@@ -111,3 +111,52 @@ LRANGE users 0 -1
 
 
 Часть 2 (задание под звездочкой)
+
+1) Развернул кластер из 3х инстансов redisa с помощью docker-compose(приложен)
+2) Зашел на каждую ноду и установил разрешения для файла chown redis:redis /etc/redis/sentinel.conf и chmod 640 /etc/redis/sentinel.conf
+3) Перезапустил каждый из серверов командой /usr/local/bin/redis-server /etc/redis/sentinel.conf --sentinel
+4) Проверил что во всех контейнерах появился процесс через ps -aux
+5) Подключился к sentinal через  
+6) выполнил SENTINEL MASTERS 
+
+Результат команды: 
+1)  1) "name"
+    2) "mymaster"
+    3) "ip"
+    4) "127.0.0.1"
+    5) "port"
+    6) "6379"
+    7) "runid"
+    8) "11dbc83540057b879e75ed8a5c8d66fd3dc1cac8"
+    9) "flags"
+   10) "master"
+   11) "link-pending-commands"
+   12) "0"
+   13) "link-refcount"
+   14) "1"
+   15) "last-ping-sent"
+   16) "0"
+   17) "last-ok-ping-reply"
+   18) "883"
+   19) "last-ping-reply"
+   20) "883"
+   21) "down-after-milliseconds"
+   22) "3000"
+   23) "info-refresh"
+   24) "3611"
+   25) "role-reported"
+   26) "master"
+   27) "role-reported-time"
+   28) "1288358"
+   29) "config-epoch"
+   30) "0"
+   31) "num-slaves"
+   32) "2"
+   33) "num-other-sentinels"
+   34) "3"
+   35) "quorum"
+   36) "2"
+   37) "failover-timeout"
+   38) "180000"
+   39) "parallel-syncs"
+   40) "1"

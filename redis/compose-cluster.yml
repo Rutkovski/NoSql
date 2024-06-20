@@ -1,0 +1,49 @@
+version: '3.3'
+
+services:
+  redis-0:
+    image: redis:7.2.5
+    container_name: redis-0
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./dаta0:/root/redis
+      - ./redis_master.conf:/etc/redis/redis.conf
+      - ./sentinel.conf:/etc/redis/sentinel.conf
+    command: redis-server /etc/redis/redis.conf
+    environment:
+    #   - REDIS_PASSWORD=my-password
+    - REDIS_PORT=6379
+    #   - REDIS_DATABASES=16
+  redis-1:
+    image: redis:7.2.5
+    container_name: redis-1
+    restart: always
+    ports:
+      - "6380:6380"
+    volumes:
+      - ./dаta1:/root/redis
+      - ./redis_replica.conf:/etc/redis/redis.conf
+      - ./sentinel.conf:/etc/redis/sentinel.conf
+    command: redis-server /etc/redis/redis.conf --slaveof redis-0 6379
+    environment:
+    #   - REDIS_PASSWORD=my-password
+      - REDIS_PORT=6380
+    #   - REDIS_DATABASES=16
+  redis-2:
+    image: redis:7.2.5
+    container_name: redis-2
+    restart: always
+    ports:
+      - "6381:6381"
+    volumes:
+      - ./dаta2:/root/redis
+      - ./redis_replica.conf:/etc/redis/redis.conf
+      - ./sentinel.conf:/etc/redis/sentinel.conf
+    command: redis-server /etc/redis/redis.conf --slaveof redis-0 6379
+    environment:
+    #   - REDIS_PASSWORD=my-password
+      - REDIS_PORT=6381
+    #   - REDIS_DATABASES=16
+  
