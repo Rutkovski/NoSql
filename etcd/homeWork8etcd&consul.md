@@ -5,6 +5,9 @@
 4. etcdctl --write-out=table endpoint status - посмотрел статусы в 3х контейнерах, увидел кто лидер.
 <img width="1433" alt="image" src="https://github.com/Rutkovski/NoSql/assets/64417045/52bc7c0c-80bf-43d0-82eb-d7f73a1fd014">
 5. Выключил контейнер лидера  docker stop etcd3, посмотрел что появился новый лидер.
+<img width="1432" alt="image" src="https://github.com/Rutkovski/NoSql/assets/64417045/eacf979e-7988-42ce-babb-1d8ff4c8f18a">
 6. Включил лидера назад через , посмотрел что он рабоатает и в кластере  docker run etcd3 
 
-#Часть 2 
+# Часть 2 
+
+
