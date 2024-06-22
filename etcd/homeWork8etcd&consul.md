@@ -3,7 +3,7 @@
 2) Покопался с докер компоуз файлом, развернул etcd его помощь кластер из 3х машин, (рабочий файл compose прилагаю, лежит рядом)
 3) Выполнил команды по вставке, получению значений: etcdctl get foo, etcd put foo2 bar2 и т.д.
 4) etcdctl --write-out=table endpoint status - посмотрел статусы в 3х контейнерах, увидел кто лидер.
-![Uploading image.png…]()
+<img width="1433" alt="image" src="https://github.com/Rutkovski/NoSql/assets/64417045/52bc7c0c-80bf-43d0-82eb-d7f73a1fd014">
 5) Выключил контейнер лидера  docker stop etcd3, посмотрел что появился новый лидер.
 6) Включил лидера назад через , посмотрел что он рабоатает и в кластере  docker run etcd3 
 
