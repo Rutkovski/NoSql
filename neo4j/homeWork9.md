@@ -21,7 +21,45 @@
 Часть 2
 Возьмем для примера структуру предлагаемую в практической части к уроку (фильмы и люди снявшие их, актеры снявшиеся в фильме).
 На примере реляционной БД.
+0) Создать базу данных например 
+Пример
+CREATE DATABASE kinopoisk;
 1) На каждый тип ноды  нужна таблица, со нодой и ее свойствами. Т.е. 1-я таблица - актеры, 2-я таблица - режиссер, 3-я таблица - фильмы.
-2) Также, на каждую связь (т.к. связь между сущностями многие ко многим) нужна таблица, в которой в т.ч. могут быть свойства связи.
+Пример
+CREATE TABLE producers
+(
+    id    serial primary key,
+    name        VARCHAR(40) not null,
+    birthday         DATE
+);
+CREATE TABLE actors
+(
+    id    serial primary key,
+    name        VARCHAR(40) not null,
+    birthday         DATE
+);
+CREATE TABLE films
+(
+    id    serial primary key,
+    title        VARCHAR(40) not null,
+    YEAR         DATE
+);
 
+2) Также, нужна связывающаяя все это таблица (т.к. связь между сущностями многие ко многим) нужна таблица, в которой в т.ч. могут быть свойства связи. Предполагаю что можно обойтись одной на все сущности (ноды)
+CREATE TABLE actors_films_producers
+(
+  actor_did integer,
+  film_id integer,
+  producer_id integer,
+);
 
+3) Затем, вставлять каждую запись сразу в несколько таблиц, обеспечивая целостность и согласованность данных
+что-то в духе
+
+INSERT INTO films (title,"year") VALUES
+    ('Inception', '2015-01-01');    
+INSERT INTO actors (name,"birthday") VALUES
+    ('leonardo di caprio', '1970-01-01');
+INSERT INTO producers  (name,"birthday") VALUES
+    ('Martin McDonagh', '1970-01-02');
+INSERT INTO actors_films_producers (actor_id, film_id, producer_id) VALUES (1,1,1);
