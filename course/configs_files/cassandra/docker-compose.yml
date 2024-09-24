@@ -1,0 +1,17 @@
+services:
+ 
+  cassandra:
+    image: cassandra:latest
+    container_name: cassandra
+    hostname: cassandra
+    restart: unless-stopped
+    environment:
+      TZ: "Europe/Moscow"
+    volumes:
+      - ./cassandra.yaml:/etc/cassandra/cassandra.yaml
+      - ./data:/var/lib/cassandra
+    ports:
+      - 9042:9042
+      - 7199:7199
+      - 7000:7000
+      - 9160:9160
